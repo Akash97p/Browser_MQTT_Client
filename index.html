@@ -12,12 +12,12 @@
       <input name="port" id="port">
       Client ID : 
       <input name="clientId" id="clientId">
-      <button class = 'button-en' id = 'submit'>Submit</button>
+      <button class = 'button-en' id = 'conf_btn'>Submit</button>
+      <div id="conf_debug"></div>
       <br><br><br>
 
-
       <h2>MQTT Publish</h2>
-      Pub Topic : 
+      Topic : 
       <input id="pub_topic">
       Message : 
       <input id="msg">
@@ -25,13 +25,12 @@
       <div id="pub_debug"></div>
       <br><br><br>
 
-
       <h2>MQTT Subscribe</h2>
+      Topic : 
       <input id="sub_topic">
       <button class = 'button-en' id = 'sub_btn'>Subscribe</button>
       <br><br>
       <div id="sub_debug"></div>
-
 
     </body>
     <script src="scripts/mqtt.js"></script>
