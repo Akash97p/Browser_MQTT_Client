@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Browser MQTT Client</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <body>
+      <h2>MQTT Conf</h2>
+      Brocker : 
+      <input name="brocker" id="brocker">
+      Port : 
+      <input name="port" id="port">
+      Client ID : 
+      <input name="clientId" id="clientId">
+      <button class = 'button-en' id = 'submit'>Submit</button>
+      <br><br><br>
+
+
+      <h2>MQTT Publish</h2>
+      Pub Topic : 
+      <input id="pub_topic">
+      Message : 
+      <input id="msg">
+      <button class = 'button-en' id = 'pub_btn'>Publish</button>
+      <div id="pub_debug"></div>
+      <br><br><br>
+
+
+      <h2>MQTT Subscribe</h2>
+      <input id="sub_topic">
+      <button class = 'button-en' id = 'sub_btn'>Subscribe</button>
+      <br><br>
+      <div id="sub_debug"></div>
+
+
+    </body>
+    <script src="scripts/mqtt.js"></script>
+    <script src="scripts/main.js"></script>
+</html>
