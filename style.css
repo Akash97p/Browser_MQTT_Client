@@ -1,0 +1,39 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+    display: flex;
+}
+
+div {
+    display: inline-block;
+    margin: 10px;
+}
+
+p {
+    display: inline-block;
+}
+
+.left_nav {
+    background-color: #ffc93c;
+    height: 100%;
+    min-height: 100%;
+    width: 20%;
+    margin: 0px 20px 0px 0px;
+}
+
+.conf_div {
+    height: 300px;
+    width: 100%
+}
+
+.pub_sub_div {
+    display: block;
+}
+
+.pub_div {}
+
+.sub_div {}
