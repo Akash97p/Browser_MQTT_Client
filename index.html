@@ -4,60 +4,112 @@
 <head>
     <title>Browser MQTT Client</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" <link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Comfortaa:wght@300&family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="left_nav">
-        <div class="titl_div">
-            <h2 class="title">Browser MQTT<br> Client</h2>
-            <a href="github.com">github</a>
-        </div>
-        <div class="con_status">
-            <p>debug msg here</p>
-        </div>
-    </div>
-    <div class="conf_div">
-        <h2>MQTT Conf</h2>
-        <p>Brocker :</p> <input name="brocker" id="brocker">
-        <p>Port :</p> <input name="port" id="port">
-        <p>Client ID :</p> <input name="clientId" id="clientId"><br><br>
-        <p>User name :</p> <input name="user Name" id="userName">
-        <p>Password :</p> <input name="password" id="password">
-        <p>Keepalive :</p> <input name="keeoalive" id="keepalive">
-        <label for="qos">QOS :</label>
-        <select name="qos" id="qos">
-            <option value="0">0 -Almost Once</option>
-            <option value="1">1 -Atleast Once</option>
-            <option value="2">2 -Exactly Once</option>
-          </select>
-
-        <button class='btn-primary' id='conf_btn'>Submit</button>
-        <div id="conf_debug"></div>
-    </div>
-    <div class="pub_sub_div">
-        <div class="pub_div">
-            <h2>MQTT Publish</h2>
-            <p>Topic :</p><input id="pub_topic">
-            <p>Message :</p><input id="msg"><br><br>
-            <button class='btn-primary' id='pub_btn'>Publish</button>
-            <div id="pub_debug">
-                <p>Pub debug msg here</p>
+    <div class="main_div">
+        <div class="left_nav">
+            <div class="titl_div">
+                <h1 class="title">Browser MQTT<br> Client</h1>
+                <a href="https://github.com/Akash97p/Browser_MQTT_Client" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="git_img"> </a>
+            </div>
+            <div class="con_status">
+                <p>debug msg here</p>
             </div>
         </div>
+        <div class="right_div">
+            <div class="conf_div">
+                <h2>MQTT Conf</h2>
+                <div class="input_div">
+                    <label for="brocker" class="label_name">
+                        <span class="content_name"> Brocker :</span>
+                    </label>
+                    <input name="brocker" id="brocker" required>
+                </div>
+                <div class="input_div">
+                    <label for="port" class="label_name">
+                        <span class="content_name"> Port :</span>
+                    </label>
+                    <input name="port" id="port">
+                </div>
+                <div class="input_div">
+                    <label for="clientId" class="label_name">
+                        <span class="content_name"> Client ID :</span>
+                    </label>
+                    <input name="clientId" id="clientId"><br><br>
+                </div>
+                <div class="input_div">
+                    <label for="userName class=" label_name ">
+                        <span class="content_name "> User name :</span>
+                    </label>
+                    <input name="userName " id="userName ">
+                </div>
+                <div class="input_div ">
+                    <label for="password " class="label_name ">
+                        <span class="content_name "> Password :</span>
+                    </label>
+                    <input name="password " id="password ">
+                </div>
+                <div class="input_div ">
+                    <label for="keepalive " class="label_name ">
+                        <span class="content_name "> Keepalive :</span>
+                    </label>
+                    <input name="keepalive " id="keepalive ">
+                </div>
+                <div class="input_div ">
+                    <label for="qos " class="label_name ">
+                        <span class="content_name "> QOS :</span>
+                    </label>
+                    <select name="qos " id="qos ">
+                        <option value="0 ">0 -Almost Once</option>
+                        <option value="1 ">1 -Atleast Once</option>
+                        <option value="2 ">2 -Exactly Once</option>
+                    </select>
+                </div>
+                <button class='btn-primary' id='conf_btn'>Submit</button>
+                <div id="conf_debug "></div>
+            </div>
+            <div class="pub_sub_div ">
+                <div class="pub_div ">
+                    <h2>MQTT Publish</h2>
+                    <div class="input_div ">
+                        <label for="pub_topic " class="label_name ">
+                            <span class="content_name "> Topic :</span>
+                        </label>
+                        <input name="pub_topic " id="pub_topic " required>
+                    </div>
+                    <div class="input_div ">
+                        <label for="msg " class="label_name ">
+                            <span class="content_name "> Message :</span>
+                        </label>
+                        <input name="msg " id="msg " required><br><br>
+                    </div>
+                    <button class='btn-primary' id='pub_btn'>Publish</button>
+                    <div id="pub_debug ">
+                        <p>Pub debug msg here</p>
+                    </div>
+                </div>
 
-        <div class="sub_div">
-            <h2>MQTT Subscribe</h2>
-            <p>Topic : </p>
-            <input id="sub_topic"><br><br>
-            <button class='btn-primary' id='sub_btn'>Subscribe</button>
-            <div id="sub_debug">
-                <p>sub debug msg here</p>
+                <div class="sub_div ">
+                    <h2>MQTT Subscribe</h2>
+                    <div class="input_div ">
+                        <label for="sub_topic " class="label_name ">
+                            <span class="content_name "> Topic :</span>
+                        </label>
+                        <input name="sub_topic " id="sub_topic " required><br><br>
+                    </div>
+                    <button class='btn-primary' id='sub_btn'>Subscribe</button>
+                    <div id="sub_debug ">
+                        <p>sub debug msg here</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>div>
+    </div>
 </body>
-<script src="scripts/mqtt.js"></script>
-<script src="scripts/main.js"></script>
+<script src="scripts/mqtt.js "></script>
+<script src="scripts/main.js "></script>
 
 </html>
