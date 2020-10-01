@@ -1,9 +1,11 @@
 const conf_btn = document.getElementById('conf_btn');
 const pub_btn = document.getElementById('pub_btn');
 const sub_btn = document.getElementById('sub_btn');
-const pub_debug = document.getElementById('pub_debug')
-const sub_debug = document.getElementById('sub_debug')
-const conf_debug = document.getElementById('conf_debug')
+const conf_exp_btn = document.getElementById('conf_exp');
+const sub_debug = document.getElementById('sub_debug');
+const con_status = document.getElementById('con_status');
+const debug_window = document.getElementById('debug_window');
+
 
 
 conf_btn.addEventListener('click', function config() {
@@ -14,7 +16,7 @@ conf_btn.addEventListener('click', function config() {
         var host = 'ws://' + brocker + ':' + port
         conf(host, clientId);
     } else {
-        conf_debug.textContent = 'Values can\'t be blank';
+        debug_window.textContent = 'Values can\'t be blank \r\n';
         console.log('Values can\'t be blank');
     }
 });
@@ -25,18 +27,18 @@ pub_btn.addEventListener('click', function publish() {
     if (y.length != 0) {
         if (x.length != 0) {
             client.publish(y, x)
-            pub_debug.textContent = 'Published "' + x + '" to topic "' + y + '"';
+            debug_window.textContent = 'Published "' + x + '" to topic "' + y + '"\r\n';
             console.log('Published "' + x + '"to topic "' + y + '"');
         } else {
-            pub_debug.textContent = 'Message can\'t be blank';
+            debug_window.textContent = 'Message can\'t be blank \r\n';
             console.log('Message can\'t be blank');
         }
     } else {
         if (x.length != 0) {
-            pub_debug.textContent = 'Topic can\'t be blank';
+            debug_window.textContent = 'Topic can\'t be blank \r\n';
             console.log('Topic can\'t be blank');
         } else {
-            pub_debug.textContent = 'Topic and Message can\'t be blank';
+            debug_window.textContent = 'Topic and Message can\'t be blank \r\n';
             console.log('Topic and Message can\'t be blank');
         }
     }
@@ -52,7 +54,7 @@ sub_btn.addEventListener('click', function subscribe() {
                 console.log('Unsubscribed from : ' + sub_topic);
                 client.subscribe(x, function(err) {
                     if (!err) {
-                        sub_debug.textContent = 'Unsubscribed from : ' + sub_topic + '  and  Subscribed to : ' + x;
+                        debug_window.textContent = 'Unsubscribed from : ' + sub_topic + '  and  Subscribed to : ' + x + '\r\n';
                         sub_topic = x;
                         console.log('Subscribed to : ' + x);
                     }
@@ -93,16 +95,21 @@ function conf(x, y) {
 
     window.client = mqtt.connect(host, options)
     client.on('error', function(err) {
-        console.log(err)
+        console.log('bla + ' + err)
+        debug_window.textContent = err;
         client.end()
     })
 
     client.on('connect', function() {
-        console.log('Connected to ' + host + '  | Client ID' + clientId);
-        conf_debug.textContent = 'Connected to ' + host + '  | Client ID : ' + clientId;
         client.subscribe(sub_topic, function(err) {
             if (!err) {
-                //   client.publish('presence', 'Hello mqtt')
+                console.log('Connected to ' + host + '  | Client ID' + clientId);
+                con_status.textContent = 'Connected';
+                con_status.style.backgroundColor = "green";
+                debug_window.textContent = 'Connected to ' + host + '  | Client ID : ' + clientId + '\r\n';
+            } else {
+                con_status.textContent = 'Disconnected';
+                con_status.style.backgroundColor = "red";
             }
         })
     })

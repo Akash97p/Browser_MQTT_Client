@@ -15,61 +15,83 @@
                 <h1 class="title">Browser MQTT<br> Client</h1>
                 <a href="https://github.com/Akash97p/Browser_MQTT_Client" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="git_img"> </a>
             </div>
-            <div class="con_status">
-                <p>debug msg here</p>
+            <div class="debug_window">
+                <div class="debug_title">
+                    <p><b>Debug Messages</b></p>
+                </div>
+                <hr>
+                <p></p>
+                <hr>
+                <p></p>
+                <hr>
+                <p></p>
+                <hr>
+                <p></p>
+                <hr>
+                <p></p>
+                <hr>
+                <p></p>
+                <hr><br>
             </div>
         </div>
         <div class="right_div">
-            <div class="conf_div">
-                <h2>MQTT Conf</h2>
-                <div class="input_div">
-                    <label for="brocker" class="label_name">
-                        <span class="content_name"> Brocker :</span>
-                    </label>
-                    <input name="brocker" id="brocker" required>
+            <div class="conf_div_main">
+                <div class="conf_div">
+                    <div class="left">
+                        <div class="input_div">
+                            <label for="brocker" class="label_name">
+                                <span class="content_name"> Brocker :</span>
+                            </label>
+                            <input name="brocker" id="brocker" required>
+                        </div>
+                        <div class="input_div">
+                            <label for="port" class="label_name">
+                                <span class="content_name"> Port :</span>
+                            </label>
+                            <input name="port" id="port">
+                        </div>
+                        <div class="input_div">
+                            <label for="clientId" class="label_name">
+                                <span class="content_name"> Client ID :</span>
+                            </label>
+                            <input name="clientId" id="clientId"><br><br>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="input_div">
+                            <label for="userName class=" label_name ">
+                                <span class="content_name "> User name :</span>
+                            </label>
+                            <input name="userName " id="userName ">
+                        </div>
+                        <div class="input_div ">
+                            <label for="password " class="label_name ">
+                                <span class="content_name "> Password :</span>
+                            </label>
+                            <input name="password " id="password ">
+                        </div>
+                        <div class="input_div ">
+                            <label for="keepalive " class="label_name ">
+                                <span class="content_name "> Keepalive :</span>
+                            </label>
+                            <input name="keepalive " id="keepalive ">
+                        </div>
+                    </div>
+                    <div class="input_div ">
+                        <label for="qos " class="label_name ">
+                            <span class="content_name "> QOS :</span>
+                        </label>
+                        <select class="select " name="qos " id="qos ">
+                            <option value="0 ">0 -Almost Once</option>
+                            <option value="1 ">1 -Atleast Once</option>
+                            <option value="2 ">2 -Exactly Once</option>
+                        </select>
+                    </div>
+                    <button class='btn-primary' id='conf_btn'>Submit</button>
+                    <div id="conf_debug ">
+                        Conected
+                    </div>
                 </div>
-                <div class="input_div">
-                    <label for="port" class="label_name">
-                        <span class="content_name"> Port :</span>
-                    </label>
-                    <input name="port" id="port">
-                </div>
-                <div class="input_div">
-                    <label for="clientId" class="label_name">
-                        <span class="content_name"> Client ID :</span>
-                    </label>
-                    <input name="clientId" id="clientId"><br><br>
-                </div>
-                <div class="input_div">
-                    <label for="userName class=" label_name ">
-                        <span class="content_name "> User name :</span>
-                    </label>
-                    <input name="userName " id="userName ">
-                </div>
-                <div class="input_div ">
-                    <label for="password " class="label_name ">
-                        <span class="content_name "> Password :</span>
-                    </label>
-                    <input name="password " id="password ">
-                </div>
-                <div class="input_div ">
-                    <label for="keepalive " class="label_name ">
-                        <span class="content_name "> Keepalive :</span>
-                    </label>
-                    <input name="keepalive " id="keepalive ">
-                </div>
-                <div class="input_div ">
-                    <label for="qos " class="label_name ">
-                        <span class="content_name "> QOS :</span>
-                    </label>
-                    <select name="qos " id="qos ">
-                        <option value="0 ">0 -Almost Once</option>
-                        <option value="1 ">1 -Atleast Once</option>
-                        <option value="2 ">2 -Exactly Once</option>
-                    </select>
-                </div>
-                <button class='btn-primary' id='conf_btn'>Submit</button>
-                <div id="conf_debug "></div>
             </div>
             <div class="pub_sub_div ">
                 <div class="pub_div ">
