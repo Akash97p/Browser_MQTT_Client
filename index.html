@@ -34,12 +34,17 @@
                 <hr><br>
             </div>
         </div>
+        <div class="status_bar">
+            <div class="con_status">Disconnected</div>
+            <div class="conf_exp"><button class='exp_btn' id='conf_exp'>▼</button>
+            </div>
+        </div>
         <div class="conf_div">
             <div class="input_div">
-                <label for="brocker" class="label_name">
-                    <span class="content_name"> Brocker :</span>
+                <label for="host" class="label_name">
+                    <span class="content_name"> Host :</span>
                 </label>
-                <input name="brocker" id="brocker" placeholder="Brocker" required>
+                <input name="host" id="host" placeholder=" Host Address" required>
             </div>
             <div class="input_div">
                 <label for="port" class="label_name">
@@ -121,6 +126,7 @@
     </main>
 </body>
 <script src="scripts/mqtt.js "></script>
+<script src="scripts/main.js "></script>
 <script src="scripts/main.js "></script>
 
 </html>

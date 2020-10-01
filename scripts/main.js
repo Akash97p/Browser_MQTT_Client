@@ -9,7 +9,7 @@ const debug_window = document.getElementById('debug_window');
 
 
 conf_btn.addEventListener('click', function config() {
-    brocker = document.getElementById("brocker").value;
+    brocker = document.getElementById("host").value;
     port = document.getElementById("port").value;
     clientId = document.getElementById("clientId").value;
     if (brocker.length != 0 || port.length != 0) {
