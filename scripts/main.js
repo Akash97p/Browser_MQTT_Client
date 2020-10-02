@@ -1,12 +1,26 @@
-const conf_btn = document.getElementById('conf_btn');
-const pub_btn = document.getElementById('pub_btn');
-const sub_btn = document.getElementById('sub_btn');
-const conf_exp_btn = document.getElementById('conf_exp');
-const sub_debug = document.getElementById('sub_debug');
-const con_status = document.getElementById('con_status');
-const debug_window = document.getElementById('debug_window');
+var conf_btn = document.getElementById('conf_btn');
+var pub_btn = document.getElementById('pub_btn');
+var sub_btn = document.getElementById('sub_btn');
+var conf_exp_btn = document.getElementById('conf_exp');
+var sub_debug = document.getElementById('sub_debug');
+var con_status = document.getElementById('con_status');
+var debug_window = document.getElementById('debug_window');
 
-
+var i =0;
+conf_exp_btn.addEventListener('click', function expand() {
+    i=i+1;
+    console.log('exp btn pressed');
+    if (i%2){
+        document.getElementsByClassName('conf_div')[0].style.display ="none";
+        document.getElementsByClassName('pub_div')[0].style.gridRow ="2/4";
+        document.getElementsByClassName('sub_div')[0].style.gridRow ="2/4";
+    }
+    else{
+        document.getElementsByClassName('conf_div')[0].style.display ="";
+        document.getElementsByClassName('pub_div')[0].style.gridRow ="3/4";
+        document.getElementsByClassName('sub_div')[0].style.gridRow ="3/4";
+    }
+});
 
 conf_btn.addEventListener('click', function config() {
     brocker = document.getElementById("host").value;
@@ -105,7 +119,7 @@ function conf(x, y) {
             if (!err) {
                 console.log('Connected to ' + host + '  | Client ID' + clientId);
                 con_status.textContent = 'Connected';
-                con_status.style.backgroundColor = "green";
+                document.getElementsByClassName('con_status_div')[0].style.backgroundColor = "green";
                 debug_window.textContent = 'Connected to ' + host + '  | Client ID : ' + clientId + '\r\n';
             } else {
                 con_status.textContent = 'Disconnected';
@@ -120,3 +134,5 @@ function conf(x, y) {
     })
 }
 // -----------------------------------------------------------------------------------
+
+conf('ws://localhost:9001','');

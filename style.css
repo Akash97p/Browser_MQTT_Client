@@ -56,19 +56,25 @@ main {
 }
 
 .status_bar {
-    background-color: lightcoral;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
     grid-column: 2/4;
     grid-row: 1/2;
     display: grid;
     grid-template-columns: 5fr 2fr 5fr 1fr;
 }
 
-.con_status {
+.con_status_div {
     border-radius: 10px;
     text-align: center;
-    background-color: lawngreen;
+    background-color: rgb(216, 0, 0);
     grid-column: 2/3;
-    height: 100%;
+    height: 90%;
+}
+
+.con_status {
+    color: white;
+    margin-top: 6%;
 }
 
 .conf_exp {
@@ -77,8 +83,7 @@ main {
 }
 
 .exp_btn {
-    height: 100%;
-    width: 100%;
+    width: 40%;
 }
 
 .conf_div {
