@@ -22,13 +22,13 @@ main {
     height: 100vh;
     display: grid;
     grid-template-columns: 2fr 3fr 5fr;
-    grid-template-rows: 5% 30% 65%;
+    grid-template-rows: 5% 35% 12.25% 17.25% 30%;
 }
 
 .left_nav {
     background-color: #5eaaa8;
     display: grid;
-    grid-row: 1/4;
+    grid-row: 1/6;
     grid-column: 1/2;
     padding-top: 20%;
     text-align: center;
@@ -41,9 +41,8 @@ main {
 
 .debug_window {
     background-color: #a3d2ca;
+    border: 1px solid #056676;
     border-radius: 3%;
-    border-width: 10px;
-    border: 5px #056676;
     height: 70%;
     margin: 10px;
     overflow: hidden;
@@ -56,6 +55,7 @@ main {
 }
 
 .status_bar {
+    margin-top: 3px;
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
     grid-column: 2/4;
@@ -87,6 +87,9 @@ main {
 }
 
 .conf_div {
+    border-radius: 10px;
+    border: 2px solid  rgb(133, 133, 175);
+    margin: 5px;
     padding: 10px;
     background-color: rgb(153, 153, 202);
     text-align: center;
@@ -95,21 +98,40 @@ main {
 }
 
 .pub_div {
+    border-radius: 10px;
+    border: 2px solid rgb(194, 186, 112);
+    margin: 5px;
+    padding: 10px;
     background-color: khaki;
     padding: 10px;
-    grid-row: 3/4;
+    grid-row: 3/5;
     grid-column: 2/3;
     text-align: center;
 }
 
 .sub_div {
-    background-color: lawngreen;
+    border-radius: 10px;
+    border: 2px solid   #056676;
+    margin: 5px;
     padding: 10px;
-    grid-row: 3/4;
-    grid-column: 3/4;
+    background-color: #a3d2ca;
+    padding: 10px;
+    grid-row: 5/6;
+    grid-column: 2/3;
     text-align: center;
 }
 
+.sub_debug{
+    border-radius: 10px;
+    border: 2px solid   #056676;
+    margin: 5px;
+    padding: 10px;
+    background-color: #a3d2ca;
+    padding: 10px;
+    grid-row: 3/6;
+    grid-column: 3/4;
+    text-align: center;
+}
 
 /* .input_div {
     width: 50%;

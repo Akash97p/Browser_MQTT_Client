@@ -7,18 +7,30 @@ var con_status = document.getElementById('con_status');
 var debug_window = document.getElementById('debug_window');
 
 var i =0;
-conf_exp_btn.addEventListener('click', function expand() {
-    i=i+1;
-    console.log('exp btn pressed');
-    if (i%2){
+
+function expand(cm) {
+    if(cm){
         document.getElementsByClassName('conf_div')[0].style.display ="none";
         document.getElementsByClassName('pub_div')[0].style.gridRow ="2/4";
-        document.getElementsByClassName('sub_div')[0].style.gridRow ="2/4";
+        document.getElementsByClassName('sub_div')[0].style.gridRow ="4/6";
+        document.getElementsByClassName('sub_debug')[0].style.gridRow ="2/6";
     }
     else{
         document.getElementsByClassName('conf_div')[0].style.display ="";
-        document.getElementsByClassName('pub_div')[0].style.gridRow ="3/4";
-        document.getElementsByClassName('sub_div')[0].style.gridRow ="3/4";
+        document.getElementsByClassName('pub_div')[0].style.gridRow ="3/5";
+        document.getElementsByClassName('sub_div')[0].style.gridRow ="5/6";
+        document.getElementsByClassName('sub_debug')[0].style.gridRow ="3/6";
+    }
+}
+
+conf_exp_btn.addEventListener('click',function exp(){
+    i=i+1;
+    console.log('exp btn pressed');
+    if (i%2){
+        expand(1);
+    }
+    else {
+        expand(0);
     }
 });
 
@@ -121,6 +133,8 @@ function conf(x, y) {
                 con_status.textContent = 'Connected';
                 document.getElementsByClassName('con_status_div')[0].style.backgroundColor = "green";
                 debug_window.textContent = 'Connected to ' + host + '  | Client ID : ' + clientId + '\r\n';
+                i=i+1;
+                expand(1);
             } else {
                 con_status.textContent = 'Disconnected';
                 con_status.style.backgroundColor = "red";
@@ -135,4 +149,4 @@ function conf(x, y) {
 }
 // -----------------------------------------------------------------------------------
 
-conf('ws://localhost:9001','');
+// conf('ws://localhost:9001','');
