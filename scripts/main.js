@@ -1,12 +1,18 @@
 var conf_btn = document.getElementById('conf_btn');
 var pub_btn = document.getElementById('pub_btn');
 var sub_btn = document.getElementById('sub_btn');
+var un_sub_btn = document.getElementById('un_sub_btn');
 var conf_exp_btn = document.getElementById('conf_exp');
-var sub_debug = document.getElementById('sub_debug');
+var con_discon = document.getElementById('con_status_div');
+var sub_debug = document.getElementById('sub_debug_window');
 var con_status = document.getElementById('con_status');
 var debug_window = document.getElementById('debug_window');
 
-var i =0;
+var new_sec = new Boolean(true);
+var i = new Boolean(true);
+var k =2;
+var prevMsg ='';
+let dw = ['dw1','dw2','dw3','dw4','dw5','dw6'];
 
 function expand(cm) {
     if(cm){
@@ -14,24 +20,74 @@ function expand(cm) {
         document.getElementsByClassName('pub_div')[0].style.gridRow ="2/4";
         document.getElementsByClassName('sub_div')[0].style.gridRow ="4/6";
         document.getElementsByClassName('sub_debug')[0].style.gridRow ="2/6";
+        document.getElementById('conf_exp').className  = "exp_btn";
     }
     else{
         document.getElementsByClassName('conf_div')[0].style.display ="";
         document.getElementsByClassName('pub_div')[0].style.gridRow ="3/5";
         document.getElementsByClassName('sub_div')[0].style.gridRow ="5/6";
         document.getElementsByClassName('sub_debug')[0].style.gridRow ="3/6";
+        document.getElementById('conf_exp').className  = "exp_btn_dwn";
     }
 }
 
+function time(){
+    var d = new Date();
+    var hr  = d.getHours();
+    var mt  = d.getMinutes();
+    var sec = d.getSeconds();
+    var ms = d.getMilliseconds();
+    if (hr>12){hr=hr-12; ms = ms +' PM';}
+    return(hr+':'+mt+':'+sec+':'+ms);
+}
+
+function connection_stat(){
+    document.getElementsByClassName('con_status_div')[0].style.backgroundColor = client.connected ?  '#5bce74' :'#e77a7a' ;
+    con_status.textContent = client.connected ? 'Connected' : 'Disconected';
+    if(!client.connected) {
+        expand(false);
+    }
+    setTimeout(connection_stat,1000);
+}
+
+function write_debug_window(msg){
+    if(msg === document.getElementById(dw[0]).innerText || k-1+ " " +msg === document.getElementById(dw[0]).innerText){
+        document.getElementById(dw[0]).textContent = k+ " " +msg;
+        k=k+1;
+    }
+    else{
+        for (let index = dw.length; index >=2; index--) {
+            document.getElementById(dw[index-1]).textContent = document.getElementById(dw[index-2]).innerText;
+        }
+    document.getElementById(dw[0]).textContent = msg
+    k=2;
+    }
+}
+
+function write_sub_debug_window(msg){
+    var diva = document.createElement('div');
+    diva.className = 'msg_div';
+    // var pElem = document.createElement('p');
+    // pElem.innerHTML = msg;
+    // diva.append(pElem);
+    // sub_debug.prepend(diva);
+    var template = [];
+    template.push(
+        '<div style="color:#056676;font-family: "Baloo Tammudu 2", sans-serif;">',
+            '<span>' + time()+ '</span>',
+        '</div>',
+        '<div style="font-family: "Raleway", sans-serif;">',
+            '<span><b>' + msg + '</b></span>',
+        '</div>'
+    );
+    diva.innerHTML = template.join('');
+    sub_debug.prepend(diva);
+}
+
 conf_exp_btn.addEventListener('click',function exp(){
-    i=i+1;
     console.log('exp btn pressed');
-    if (i%2){
-        expand(1);
-    }
-    else {
-        expand(0);
-    }
+    expand(i);
+    i = !i;
 });
 
 conf_btn.addEventListener('click', function config() {
@@ -42,7 +98,7 @@ conf_btn.addEventListener('click', function config() {
         var host = 'ws://' + brocker + ':' + port
         conf(host, clientId);
     } else {
-        debug_window.textContent = 'Values can\'t be blank \r\n';
+        write_debug_window('Values can\'t be blank');
         console.log('Values can\'t be blank');
     }
 });
@@ -53,18 +109,18 @@ pub_btn.addEventListener('click', function publish() {
     if (y.length != 0) {
         if (x.length != 0) {
             client.publish(y, x)
-            debug_window.textContent = 'Published "' + x + '" to topic "' + y + '"\r\n';
+            write_debug_window('Published "' + x + '" to topic "' + y);
             console.log('Published "' + x + '"to topic "' + y + '"');
         } else {
-            debug_window.textContent = 'Message can\'t be blank \r\n';
+            write_debug_window('Message can\'t be blank');
             console.log('Message can\'t be blank');
         }
     } else {
         if (x.length != 0) {
-            debug_window.textContent = 'Topic can\'t be blank \r\n';
+            write_debug_window('Topic can\'t be blank');
             console.log('Topic can\'t be blank');
         } else {
-            debug_window.textContent = 'Topic and Message can\'t be blank \r\n';
+            write_debug_window('Topic and Message can\'t be blank');
             console.log('Topic and Message can\'t be blank');
         }
     }
@@ -74,22 +130,50 @@ pub_btn.addEventListener('click', function publish() {
 sub_btn.addEventListener('click', function subscribe() {
     x = document.getElementById("sub_topic").value;
     if (x.length != 0) {
-        client.unsubscribe(sub_topic, function(err) {
+        if(x===sub_topic && !new_sec){
+            write_debug_window('Already subscribed to : ' + sub_topic);
+        }
+        else{
+        if(!new_sec){
+            client.unsubscribe(sub_topic, function(err) {
+                if (!err) {
+                    console.log('Unsubscribed from : ' + sub_topic);
+                    write_debug_window('Unsubscribed from : ' + sub_topic);
+                    document.getElementById('active_topic').textContent = '';
+                    document.getElementsByClassName('unsub_btn')[0].style.display ="none";
+            }
+            })
+        }
+        client.subscribe(x, function(err) {
             if (!err) {
-                sub_debug.textContent = 'Unsubscribed from : ' + sub_topic;
-                console.log('Unsubscribed from : ' + sub_topic);
-                client.subscribe(x, function(err) {
-                    if (!err) {
-                        debug_window.textContent = 'Unsubscribed from : ' + sub_topic + '  and  Subscribed to : ' + x + '\r\n';
-                        sub_topic = x;
-                        console.log('Subscribed to : ' + x);
-                    }
-                })
+                write_debug_window('Subscribed to : ' + x);
+                sub_topic = x;
+                document.getElementById('active_topic').textContent = '    [ Topic : '+x +' ]';
+                console.log('Subscribed to : ' + x);
+                new_sec = false;
+                document.getElementsByClassName('unsub_btn')[0].style.display ="inline";
             }
         })
-    } else {
-        sub_debug.textContent = 'Topic can\'t be blank';
+    } 
+}else {
+        write_debug_window('Topic can\'t be blank');
         console.log('Topic can\'t be blank');
+    }
+
+});
+
+un_sub_btn.addEventListener('click', function subscribe() {
+    if(!new_sec){
+        client.unsubscribe(sub_topic, function(err) {
+            if (!err) {
+                console.log('Unsubscribed from : ' + sub_topic);
+                write_debug_window('Unsubscribed from : ' + sub_topic);
+                    document.getElementById('active_topic').textContent = '';
+                    sub_debug.textContent = ('');
+                    document.getElementsByClassName('unsub_btn')[0].style.display ="none";
+            }
+        })
+        new_sec = true;
     }
 });
 
@@ -120,33 +204,32 @@ function conf(x, y) {
     }
 
     window.client = mqtt.connect(host, options)
-    client.on('error', function(err) {
+    client.on('error', function(err) { 
         console.log('bla + ' + err)
-        debug_window.textContent = err;
+        write_debug_window(err);
         client.end()
     })
 
     client.on('connect', function() {
-        client.subscribe(sub_topic, function(err) {
-            if (!err) {
+            if (client.connected) {
                 console.log('Connected to ' + host + '  | Client ID' + clientId);
                 con_status.textContent = 'Connected';
-                document.getElementsByClassName('con_status_div')[0].style.backgroundColor = "green";
-                debug_window.textContent = 'Connected to ' + host + '  | Client ID : ' + clientId + '\r\n';
-                i=i+1;
-                expand(1);
+                document.getElementsByClassName('con_status_div')[0].style.backgroundColor = '#5bce74';
+                write_debug_window('Connected to ' + host + '  | Client ID : ' + clientId);
+                expand(true);
+                connection_stat();
             } else {
                 con_status.textContent = 'Disconnected';
-                con_status.style.backgroundColor = "red";
+                con_status.style.backgroundColor =  '#e77a7a';
             }
-        })
     })
 
     client.on('message', function(topic, message) {
         console.log('Received "' + message.toString() + '" from topic "' + topic.toString() + '"')
-        sub_debug.textContent = 'Received "' + message.toString() + '" from topic "' + topic.toString() + '"';
+        // sub_debug.textContent = 'Received "' + message.toString() + '" from topic "' + topic.toString() + '"';
+        write_sub_debug_window(message.toString());
     })
 }
 // -----------------------------------------------------------------------------------
 
-// conf('ws://localhost:9001','');
+conf('ws://localhost:9001','');

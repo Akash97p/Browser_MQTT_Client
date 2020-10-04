@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Comfortaa:wght@300&family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <main>
         <div class="left_nav">
@@ -19,27 +18,26 @@
                 <div class="debug_title">
                     <p><b>Debug Messages</b></p>
                 </div>
+                <p id="dw1"></p>
                 <hr>
-                <p></p>
+                <p id="dw2"></p>
                 <hr>
-                <p></p>
+                <p id="dw3"></p>
                 <hr>
-                <p></p>
+                <p id="dw4"></p>
                 <hr>
-                <p></p>
+                <p id="dw5"></p>
                 <hr>
-                <p></p>
-                <hr>
-                <p></p>
+                <p id="dw6"></p>
                 <hr><br>
             </div>
         </div>
         <div class="status_bar">
-            <div class="con_status_div">
+            <div id="con_status_div" class="con_status_div">
                 <p id="con_status" class="con_status"><b>Disconnected</b></p>
             </div>
             <div class="conf_exp">
-                <img src="images/drop_btn.png" class="exp_btn" id="conf_exp">
+                <img src="images/drop_btn_up.png" class="exp_btn" id="conf_exp">
             </div>
         </div>
         <div class="conf_div">
@@ -106,9 +104,6 @@
                 <input name="msg" id="msg" required><br><br>
             </div>
             <button class='btn-primary' id='pub_btn'>Publish</button>
-            <div id="pub_debug ">
-                <p>Pub debug msg here</p>
-            </div>
         </div>
         <div class="sub_div">
             <h2>MQTT Subscribe</h2>
@@ -121,11 +116,15 @@
             <button class="btn-primary" id='sub_btn'>Subscribe</button>
         </div>
         <div class="sub_debug" id="sub_debug">
-            <p>sub debug msg here</p>
+            <div class="debug_title">
+                <p><b>Subsciption<span id="active_topic"></span></b></p>
+                    <button class="btn-primary unsub_btn" id='un_sub_btn'>Unsubscribe</button>
+            </div>
+            <div id="sub_debug_window">
+            </div>
         </div>
     </main>
 </body>
 <script src="scripts/mqtt.js "></script>
 <script src="scripts/main.js "></script>
-<!-- <script src="test.js "></script> -->
 </html>

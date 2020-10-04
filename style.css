@@ -43,15 +43,19 @@ main {
     background-color: #a3d2ca;
     border: 1px solid #056676;
     border-radius: 3%;
-    height: 70%;
+    height: 80%;
     margin: 10px;
     overflow: hidden;
+}
+
+#dw2, #dw4, #dw6{
+    color:#056676;
 }
 
 .debug_title {
     background-color: #056676;
     color: white;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .status_bar {
@@ -67,9 +71,10 @@ main {
 .con_status_div {
     border-radius: 10px;
     text-align: center;
-    background-color: rgb(216, 0, 0);
+    background-color: #e77a7a;
     grid-column: 2/3;
     height: 90%;
+    transition-duration: .5s;
 }
 
 .con_status {
@@ -84,6 +89,16 @@ main {
 
 .exp_btn {
     width: 40%;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform: rotate(180deg);
+}
+
+.exp_btn_dwn {
+    width: 40%;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform: rotate(0deg);
 }
 
 .conf_div {
@@ -95,6 +110,7 @@ main {
     text-align: center;
     grid-row: 2/3;
     grid-column: 2/4;
+    transition-duration: .5s;
 }
 
 .pub_div {
@@ -125,14 +141,31 @@ main {
     border-radius: 10px;
     border: 2px solid   #056676;
     margin: 5px;
-    padding: 10px;
     background-color: #a3d2ca;
-    padding: 10px;
     grid-row: 3/6;
     grid-column: 3/4;
     text-align: center;
 }
 
+#sub_debug_window{
+    text-align: center;
+    height: 90%;
+    overflow: auto;
+}
+
+.unsub_btn{
+    display: none;
+    margin-left: 50px;
+}
+
+.msg_div{
+    border: 2px solid rgb(194, 186, 112);
+    border-radius: 10px;
+    margin:5px auto ;
+    padding: 5px;
+    width: 80%;
+    background-color: khaki;
+}
 /* .input_div {
     width: 50%;
     position: relative;
