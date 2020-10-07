@@ -3,6 +3,7 @@ var pubBtn = document.getElementById('pub_btn');
 var subBtn = document.getElementById('sub_btn');
 var unSubBtn = document.getElementById('un_sub_btn');
 var confExpBtn = document.getElementById('conf_exp');
+var downloadBtn = document.getElementById('dwnld_btn');
 var subDebug = document.getElementById('sub_debug_window');
 var conStatus = document.getElementById('con_status');
 var debugWindow = document.getElementById('debug_window');
@@ -12,6 +13,19 @@ var i = new Boolean(true);
 var k =2;
 var subMsgArray = [];
 let csvContent = "data:text/csv;charset=utf-8,";
+
+function downloadCsv(){
+    subMsgArray.forEach( function (line){
+        csvContent += line + "\r\n";
+    });
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "my_data.csv");
+    document.body.appendChild(link); // Required for FF
+
+    link.click();
+}
 
 function conf(x, y) {
     window.clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
@@ -96,12 +110,17 @@ function connection_stat(){
     document.getElementsByClassName('con_status_div')[0].style.backgroundColor = client.connected ?  '#5bce74' :'#e77a7a' ;
     conStatus.textContent = client.connected ? 'Connected' : 'Disconected';
     if(!client.connected) {
-        alert( 'Disconnected from ' + host)
         printToDebugWindow('Disconnected from ' + host);
+        document.getElementsByClassName('sub_div')[0].style.backgroundColor ="lightgray";
+        document.getElementsByClassName('sub_debug')[0].style.backgroundColor ="lightgray";
+        document.getElementsByClassName('pub_div')[0].style.backgroundColor ="lightgray";
         expand(false);
     }
     else{
-    setTimeout(connection_stat,1000);
+        setTimeout(connection_stat,1000);
+        document.getElementsByClassName('sub_div')[0].style.backgroundColor ="#a3d2ca";
+        document.getElementsByClassName('sub_debug')[0].style.backgroundColor ="#a3d2ca";
+        document.getElementsByClassName('pub_div')[0].style.backgroundColor ="#a3d2ca";
     }
 }
 
@@ -160,11 +179,6 @@ function printSubmsg(msg){
 }
 
 function unSubscribe() {
-    subMsgArray.forEach( function (line){
-        csvContent += line + "\r\n";
-    });
-    var encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
     if(subscibed){
         client.unsubscribe(activeTopic, function(err) {
             if (!err) {
@@ -174,6 +188,7 @@ function unSubscribe() {
                 document.getElementById('activeTopic').textContent = '';
                 printToDebugWindow('Unsubscribed from : ' + activeTopic);
                 document.getElementsByClassName('unsub_btn')[0].style.display ="none";
+                document.getElementsByClassName('dwnld_btn')[0].style.display ="none";
                 activeTopic = '';
             }
         });
@@ -181,6 +196,7 @@ function unSubscribe() {
 }
 
 function subscribe() {
+    if(client.connected){
     const newTopic = document.getElementById("sub_topic").value;
     if (newTopic.length != 0) {
         if(newTopic===activeTopic){
@@ -197,11 +213,12 @@ function subscribe() {
                     console.log('Subscribed to : ' + activeTopic);
                     printToDebugWindow('Subscribed to : ' + activeTopic);
                     document.getElementsByClassName('unsub_btn')[0].style.display ="inline";
+                    document.getElementsByClassName('dwnld_btn')[0].style.display ="inline";
                     document.getElementById('activeTopic').textContent = '    [ Topic : '+activeTopic +' ]';
                 }
             });
         } 
-    }
+    }}
     else {
             printToDebugWindow('Topic can\'t be blank');
             console.log('Topic can\'t be blank');
@@ -255,5 +272,7 @@ pubBtn.addEventListener('click', function publish() {
 subBtn.addEventListener('click', subscribe);
 
 unSubBtn.addEventListener('click', unSubscribe);
+
+downloadBtn.addEventListener('click',downloadCsv);
 
 conf('ws://localhost:9001','');

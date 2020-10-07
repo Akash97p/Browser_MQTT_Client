@@ -157,6 +157,12 @@ main {
     margin-left: 50px;
 }
 
+.dwnld_btn{
+    display: none;
+    margin-bottom: -6px;
+    margin-left: 50px;
+}
+
 .msg_div{
     font-weight: normal;
     border: 2px solid #056676;
