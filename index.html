@@ -14,26 +14,17 @@
                 <h1 class="title">Browser MQTT<br> Client</h1>
                 <a href="https://github.com/Akash97p/Browser_MQTT_Client" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="git_img"> </a>
             </div>
-            <div id="debug_window" class="debug_window">
+            <div class="debug_window">
                 <div class="debug_title">
                     <p><b>Debug Messages</b></p>
                 </div>
-                <p id="dw1"></p>
-                <hr>
-                <p id="dw2"></p>
-                <hr>
-                <p id="dw3"></p>
-                <hr>
-                <p id="dw4"></p>
-                <hr>
-                <p id="dw5"></p>
-                <hr>
-                <p id="dw6"></p>
-                <hr><br>
+                <div id="debug_window">
+                    <div class="msg"></div>
+                </div>
             </div>
         </div>
         <div class="status_bar">
-            <div id="con_status_div" class="con_status_div">
+            <div class="con_status_div">
                 <p id="con_status" class="con_status"><b>Disconnected</b></p>
             </div>
             <div class="conf_exp">
@@ -117,7 +108,7 @@
         </div>
         <div class="sub_debug" id="sub_debug">
             <div class="debug_title">
-                <p><b>Subsciption<span id="active_topic"></span></b></p>
+                <p><b>Subsciption<span id="activeTopic"></span></b></p>
                     <button class="btn-primary unsub_btn" id='un_sub_btn'>Unsubscribe</button>
             </div>
             <div id="sub_debug_window">

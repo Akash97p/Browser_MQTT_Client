@@ -27,7 +27,6 @@ main {
 
 .left_nav {
     background-color: #5eaaa8;
-    display: grid;
     grid-row: 1/6;
     grid-column: 1/2;
     padding-top: 20%;
@@ -36,20 +35,22 @@ main {
 
 .git_img {
     width: 15%;
-    padding: 10px;
+    padding: 40px;
 }
 
 .debug_window {
     background-color: #a3d2ca;
     border: 1px solid #056676;
-    border-radius: 3%;
-    height: 80%;
-    margin: 10px;
+    border-radius: 10px;
+    height: 62%;
+    margin:10px ;
     overflow: hidden;
 }
 
-#dw2, #dw4, #dw6{
-    color:#056676;
+#debug_window{
+    text-align: center;
+    height: 90%;
+    overflow: auto;
 }
 
 .debug_title {
@@ -103,10 +104,9 @@ main {
 
 .conf_div {
     border-radius: 10px;
-    border: 2px solid  rgb(133, 133, 175);
+    border: 2px solid   #056676;
     margin: 5px;
-    padding: 10px;
-    background-color: rgb(153, 153, 202);
+    background-color: #a3d2ca;
     text-align: center;
     grid-row: 2/3;
     grid-column: 2/4;
@@ -115,10 +115,9 @@ main {
 
 .pub_div {
     border-radius: 10px;
-    border: 2px solid rgb(194, 186, 112);
+    border: 2px solid   #056676;
     margin: 5px;
-    padding: 10px;
-    background-color: khaki;
+    background-color: #a3d2ca;
     padding: 10px;
     grid-row: 3/5;
     grid-column: 2/3;
@@ -159,12 +158,13 @@ main {
 }
 
 .msg_div{
-    border: 2px solid rgb(194, 186, 112);
+    font-weight: normal;
+    border: 2px solid #056676;
     border-radius: 10px;
     margin:5px auto ;
     padding: 5px;
     width: 80%;
-    background-color: khaki;
+    background-color: #cff3ee;
 }
 /* .input_div {
     width: 50%;
