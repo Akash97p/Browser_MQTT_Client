@@ -78,6 +78,23 @@ main {
     transition-duration: .5s;
 }
 
+#disconect_btn{
+    display: none;
+    color: #fff;
+    width: 40px;
+    position: absolute;
+    margin: .29%
+}
+
+#disconect_btn:hover {
+    cursor: pointer;
+    pointer-events: visible;
+    color: #e77a7a;
+    width: 40px;
+    position: absolute;
+    margin: .29%
+}
+
 .con_status {
     color: white;
     margin-top: 6%;
@@ -108,9 +125,42 @@ main {
     margin: 5px;
     background-color: #a3d2ca;
     text-align: center;
+    display: block;
     grid-row: 2/3;
-    grid-column: 2/4;
-    transition-duration: .5s;
+    grid-column: 2/4;   
+    transition-duration: 0.4s;
+
+}
+
+.conf_a{
+    width: 90%;
+    padding-top: 20px;
+    display: inline-flex;
+    margin: 0px auto 0px auto;
+}
+
+.conf_b{
+    width: 90%;
+    padding-top: 10px;
+    margin: 0px auto 0px auto;
+    display: inline-flex;
+}
+
+.a{
+    height: 100%;
+}
+
+select{
+    background-color: #cff3ee;
+    color: #056676;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border-bottom: 2px solid #056676;
+}
+
+select:hover{
+    border: 1px solid #056676;
 }
 
 .pub_div {
@@ -122,6 +172,7 @@ main {
     grid-row: 3/5;
     grid-column: 2/3;
     text-align: center;
+    transition-duration: 0.4s;
 }
 
 .sub_div {
@@ -134,6 +185,7 @@ main {
     grid-row: 5/6;
     grid-column: 2/3;
     text-align: center;
+    transition-duration: 0.4s;
 }
 
 .sub_debug{
@@ -144,6 +196,7 @@ main {
     grid-row: 3/6;
     grid-column: 3/4;
     text-align: center;
+    transition-duration: 0.4s;
 }
 
 #sub_debug_window{
@@ -158,9 +211,11 @@ main {
 }
 
 .dwnld_btn{
+    cursor: pointer;
     display: none;
-    margin-bottom: -6px;
+    margin-top: 1rem;
     margin-left: 50px;
+    position: absolute;
 }
 
 .msg_div{
@@ -172,27 +227,74 @@ main {
     width: 80%;
     background-color: #cff3ee;
 }
-/* .input_div {
-    width: 50%;
-    position: relative;
-    height: 50px;
-}
 
-.input_div input {
-    width: 100%;
+ input {
     height: 100%;
+    border-radius: 5px;
     border: none;
+    border-bottom: 2px solid #056676;
     color: #056676;
-    padding-top: 20px;
+    background-color: #cff3ee;
+    position: relative;
 }
 
-.input_div label {
-    bottom: 0px;
-    left: 0px;
-    padding-top: 20px;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    border-bottom: 1px black;
-} */
+input:hover{
+    border: 1px solid #056676;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.input_div {
+    margin: 0px auto 0px auto;
+    padding: 10px;
+    position: relative;
+}
+
+#pub_topic{
+    width: 50%;
+}
+
+.pub_msg{
+    padding-bottom: 0px;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #056676;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+
+.btn-primary:hover{
+    color: #056676;
+    background-color: #fff;
+    border: 1px solid #056676;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.unsub_btn{
+    color: #fff;
+    background-color: #5eaaa8;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    transition-duration: 0.4s;
+}
+
+.unsub_btn:hover{
+    color: #056676;
+    background-color: #fff;
+    border: 1px solid #5eaaa8;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+}
+

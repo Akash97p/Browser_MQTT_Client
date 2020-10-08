@@ -1,122 +1,129 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Browser MQTT Client</title><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Comfortaa:wght@300&family=Raleway:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <main>
 
-<head>
-    <title>Browser MQTT Client</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" <link rel="apple-touch-icon" sizes="57x57" href="images/icon/apple-icon-57x57.png"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Comfortaa:wght@300&family=Raleway:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <main>
-        <div class="left_nav">
-            <div class="titl_div">
-                <h1 class="title">Browser MQTT<br> Client</h1>
-                <a href="https://github.com/Akash97p/Browser_MQTT_Client" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="git_img"> </a>
+            <div class="left_nav">
+                <div class="titl_div">
+                    <h1 class="title">Browser <br>MQTT Client</h1>
+                    <a href="https://github.com/Akash97p/Browser_MQTT_Client" target="_blank"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" class="git_img"> </a>
+                </div>
+                <div class="debug_window">
+                    <div class="debug_title">
+                        <p><b>Debug Messages</b></p>
+                    </div>
+                    <div id="debug_window">
+                        <div class="msg"></div>
+                    </div>
+                </div>
             </div>
-            <div class="debug_window">
+
+            <div class="status_bar">
+                <div class="con_status_div">
+                    <p id="con_status" class="con_status"><b>Disconnected</b></p><span class="disc_btn" id="disconect_btn"><i class="material-icons">highlight_off</i></span>
+                </div>
+                <div class="conf_exp" >
+                    <img class="exp_btn" id="conf_exp" src="https://i.ibb.co/Km857JY/drop-btn-up.png" alt="drop-btn-up" border="0">
+                </div>
+            </div>
+
+            <div class="conf_div">
+                <div class="conf_a">
+                    <div class="input_div a">
+                        <label for="host" class="label_name">
+                            <span class="content_name"> Host :</span>
+                        </label>
+                        <input name="host" id="host" placeholder="eg: test.mosquitto.org" value="test.mosquitto.org">
+                    </div>
+                    <div class="input_div a">
+                        <label for="port" class="label_name">
+                            <span class="content_name"> Port :</span>
+                        </label>
+                        <input name="port" id="port" placeholder="eg: 8080" value="8080">
+                    </div>
+                    <div class="input_div a">
+                        <label for="clientId" class="label_name">
+                            <span class="content_name"> Client ID :</span>
+                        </label>
+                        <input name="clientId" id="clientId"><br><br>
+                    </div>
+                </div>
+                <div class="conf_b">
+                    <div class="input_div b">
+                        <label for="userName" class=" label_name ">
+                            <span class="content_name "> User name :</span>
+                        </label>
+                        <input name="userName" id="userName">
+                    </div>
+                    <div class="input_div b">
+                        <label for="password" class="label_name">
+                            <span class="content_name "> Password :</span>
+                        </label>
+                        <input name="password" id="password">
+                    </div>
+                    <div class="input_div b">
+                        <label for="keepalive" class="label_name">
+                            <span class="content_name "> Keepalive :</span>
+                        </label>
+                        <input name="keepalive" id="keepalive">
+                    </div>
+                </div>
+                <div class="input_div">
+                    <label for="qos" class="label_name">
+                        <span class="content_name"> QOS :</span>
+                    </label>
+                    <select class="select" name="qos" id="qos">
+                        <option value="0 ">0 -Almost Once</option>
+                        <option value="1 ">1 -Atleast Once</option>
+                        <option value="2 ">2 -Exactly Once</option>
+                    </select>
+                </div>
+                <button class="btn-primary" id="conf_btn" >Submit</button>
+            </div>   
+
+            <div class="pub_div">
+                <h2>MQTT Publish</h2>
+                <div class="input_div">
+                    <label for="pub_topic" class="label_name">
+                        <span class="content_name "> Topic :</span>
+                    </label>
+                    <input name="pub_topic" id="pub_topic" required>
+                </div>
+                <div class="input_div pub_msg">
+                    <label for="msg" class="label_name">
+                        <span class="content_name "> Message :</span>
+                    </label>
+                    <input name="msg" id="msg" required><br><br>
+                </div>
+                <button class='btn-primary' id='pub_btn'>Publish</button>
+            </div>
+
+            <div class="sub_div">
+                <h2>MQTT Subscribe</h2>
+                <div class="input_div">
+                    <label for="sub_topic" class="label_name">
+                        <span class="content_name"> Topic :</span>
+                    </label>
+                    <input name="sub_topic" id="sub_topic" required><br><br>
+                </div>
+                <button class="btn-primary" id='sub_btn'>Subscribe</button>
+            </div>
+            <div class="sub_debug">
                 <div class="debug_title">
-                    <p><b>Debug Messages</b></p>
+                    <p><b>Subsciption<span id="activeTopic"></span></b></p>
+                        <button class="btn-primary unsub_btn" id='un_sub_btn'>Unsubscribe</button>
+                        <i class="material-icons dwnld_btn" id="dwnld_btn" title="Download data in CSV format">get_app</i>
                 </div>
-                <div id="debug_window">
-                    <div class="msg"></div>
+                <div id="sub_debug_window">
                 </div>
             </div>
-        </div>
-        <div class="status_bar">
-            <div class="con_status_div">
-                <p id="con_status" class="con_status"><b>Disconnected</b></p>
-            </div>
-            <div class="conf_exp">
-                <img src="images/drop_btn_up.png" class="exp_btn" id="conf_exp">
-            </div>
-        </div>
-        <div class="conf_div">
-            <div class="input_div">
-                <label for="host" class="label_name">
-                    <span class="content_name"> Host :</span>
-                </label>
-                <input name="host" id="host" placeholder=" Host Address" required>
-            </div>
-            <div class="input_div">
-                <label for="port" class="label_name">
-                    <span class="content_name"> Port :</span>
-                </label>
-                <input name="port" id="port">
-            </div>
-            <div class="input_div">
-                <label for="clientId" class="label_name">
-                    <span class="content_name"> Client ID :</span>
-                </label>
-                <input name="clientId" id="clientId"><br><br>
-            </div>
-            <div class="input_div">
-                <label for="userName" class=" label_name ">
-                    <span class="content_name "> User name :</span>
-                </label>
-                <input name="userName" id="userName">
-            </div>
-            <div class="input_div">
-                <label for="password" class="label_name">
-                    <span class="content_name "> Password :</span>
-                </label>
-                <input name="password" id="password">
-            </div>
-            <div class="input_div">
-                <label for="keepalive" class="label_name">
-                    <span class="content_name "> Keepalive :</span>
-                </label>
-                <input name="keepalive" id="keepalive">
-            </div>
-            <div class="input_div">
-                <label for="qos" class="label_name">
-                    <span class="content_name"> QOS :</span>
-                </label>
-                <select class="select " name="qos " id="qos ">
-                    <option value="0 ">0 -Almost Once</option>
-                    <option value="1 ">1 -Atleast Once</option>
-                    <option value="2 ">2 -Exactly Once</option>
-                </select>
-            </div>
-            <button class="btn-primary" id="conf_btn" >Submit</button>
-        </div>   
-        <div class="pub_div">
-            <h2>MQTT Publish</h2>
-            <div class="input_div">
-                <label for="pub_topic" class="label_name">
-                    <span class="content_name "> Topic :</span>
-                </label>
-                <input name="pub_topic" id="pub_topic" required>
-            </div>
-            <div class="input_div">
-                <label for="msg" class="label_name">
-                    <span class="content_name "> Message :</span>
-                </label>
-                <input name="msg" id="msg" required><br><br>
-            </div>
-            <button class='btn-primary' id='pub_btn'>Publish</button>
-        </div>
-        <div class="sub_div">
-            <h2>MQTT Subscribe</h2>
-            <div class="input_div">
-                <label for="sub_topic" class="label_name">
-                    <span class="content_name"> Topic :</span>
-                </label>
-                <input name="sub_topic" id="sub_topic" required><br><br>
-            </div>
-            <button class="btn-primary" id='sub_btn'>Subscribe</button>
-        </div>
-        <div class="sub_debug" id="sub_debug">
-            <div class="debug_title">
-                <p><b>Subsciption<span id="activeTopic"></span></b></p>
-                    <button class="btn-primary unsub_btn" id='un_sub_btn'>Unsubscribe</button>
-                    <img src="images/download.svg" class="dwnld_btn" id="dwnld_btn" title="click to download data in CSv format">
-            </div>
-            <div id="sub_debug_window">
-            </div>
-        </div>
-    </main>
-</body>
-<script src="scripts/mqtt.js "></script>
-<script src="scripts/main.js "></script>
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.1/mqtt.js" integrity="sha512-ctN+F/mleGxWhB1Ip2/Rpp6oGBxM8Ho8Ajk+qpCB/iUDPCQRuRWIv7ydSRjpr+K8abKtNfjA1/9P4eLu2NS8kg==" crossorigin="anonymous"></script>
+        <script src="scripts/main.js "></script>
+    </body>
 </html>

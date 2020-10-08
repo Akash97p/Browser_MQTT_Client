@@ -61,6 +61,7 @@ function conf(x, y) {
 
     client.on('connect', function() {
             if (client.connected) {
+                document.getElementsByClassName('disc_btn')[0].style.display = "inline";
                 console.log('Connected to ' + host + '  | Client ID' + clientId);
                 conStatus.textContent = 'Connected';
                 document.getElementsByClassName('con_status_div')[0].style.backgroundColor = '#5bce74';
@@ -137,7 +138,6 @@ function printToDebugWindow(msg){
         );
         document.getElementsByClassName('msg_div')[0].innerHTML = template.join('');;
         k=k+1;
-        console.log('inside is prev msg')
     }
     else{
         console.log(document.getElementsByClassName('msg')[0].innerText);
@@ -275,4 +275,9 @@ unSubBtn.addEventListener('click', unSubscribe);
 
 downloadBtn.addEventListener('click',downloadCsv);
 
-conf('ws://localhost:9001','');
+document.getElementById('disconect_btn').addEventListener('click', function(){
+    document.getElementsByClassName('disc_btn')[0].style.display = "none";
+    unSubscribe();
+    client.end();
+});
+conf('ws://test.mosquitto.org:8080','');
