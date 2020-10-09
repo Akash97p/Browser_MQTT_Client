@@ -20,6 +20,7 @@
 <a href="https://github.com/Akash97p/Browser_MQTT_Client">
 <img align="right" src="https://img.shields.io/badge/Version-1.0-brightgreen">
 </a>
+<br>
 Simple MQTT Websockets Client using JS.
 
 ### **Options**
