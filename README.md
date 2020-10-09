@@ -5,7 +5,7 @@
 
 Simple MQTT Websockets Client using JS.
 
-###**Options**
+### **Options**
 
 * Subscribe
 * Publish
