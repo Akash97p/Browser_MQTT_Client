@@ -29,6 +29,6 @@ Simple MQTT Websockets Client using JS.
 * Publish
 * **Export received data to CSV.**
 
-<a href="https://iamgroot.xyz">
+<a href="http://mymqtt.hopto.org/">
 <img src="/images/screenShots.png">
 </a>
